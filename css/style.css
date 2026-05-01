@@ -1,0 +1,357 @@
+/* Definición de variables globales - SINCRONIZADAS */
+:root {
+    --amd-red: #ed1c24;
+    --amd-red-glow: rgba(237, 28, 36, 0.4);
+    --ryzen-orange: #ff5d22;
+
+    --bg-deep: #050505;
+    /* Antes era --dark-bg */
+    --bg-card: #121212;
+    --bg-glass: rgba(255, 255, 255, 0.03);
+
+    --text-main: #f8f9fa;
+    --text-dim: #b0b0b0;
+    --border-soft: rgba(255, 255, 255, 0.1);
+    --accent-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.8);
+
+    /* Añadimos la variable que faltaba para el Hero */
+    --accent-gradient: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+}
+
+body {
+    padding-top: 56px;
+    background-color: var(--bg-deep);
+    /* Corregido: antes decía --dark-bg */
+    color: var(--text-main);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.hero-section {
+    min-height: 100vh;
+    background: var(--accent-gradient);
+    border-bottom: 2px solid var(--amd-red);
+}
+
+/* Mejora para que las secciones bg-black usen tu color de variable */
+.bg-black {
+    background-color: var(--bg-deep) !important;
+}
+
+/* Aplicando variables a componentes de Bootstrap */
+.navbar {
+    background-color: rgba(15, 15, 15, 0.95) !important;
+    border-bottom: 1px solid #333;
+}
+
+/* Esto ilumina el enlace de la sección donde te encuentras */
+.navbar-dark .navbar-nav .nav-link.active {
+    color: var(--amd-red) !important;
+    border-bottom: 2px solid var(--amd-red);
+}
+
+.btn-primary {
+    background-color: var(--amd-red);
+    border-color: var(--amd-red);
+}
+
+.btn-primary:hover {
+    background-color: #b9151b;
+    border-color: #b9151b;
+}
+
+.imgGraphic {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-backdrop-custom {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.modal-content-custom {
+    max-width: 500px;
+    width: 90%;
+    border-radius: 15px;
+}
+
+/* Reposicionamiento del contenedor para evitar solapamiento con la flecha */
+.custom-hud-indicators {
+    position: absolute;
+    right: 60px; /*  posición movida 60px a la izquierda */
+    bottom: auto;
+    top: 50%;
+    transform: translateY(-50%);
+    margin: 0;
+    gap: 10px;
+    z-index: 15;
+}
+
+/* Reset del botón nativo de Bootstrap y aplicación del diseño HUD */
+.custom-hud-indicators .ind-bar {
+    width: 30px;
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.2);
+    border: none;
+    border-radius: 0;
+    transition: all 0.3s ease;
+    margin: 0;
+    padding: 0;
+    opacity: 1; 
+    cursor: pointer;
+}
+
+/* Estado activo controlado automáticamente por Bootstrap JS */
+.custom-hud-indicators .ind-bar.active {
+    background-color: var(--amd-red);
+    width: 45px;
+    box-shadow: 0 0 10px var(--amd-red);
+}
+
+#wafer-intro{
+    background: linear-gradient(180deg, var(--bg-deep) 0%, #111 100%);
+}
+
+/* El toque de cristal para las tarjetas de la sección Zen 5 */
+#zen5 .card {
+    background: var(--bg-glass) !important;
+    backdrop-filter: blur(10px);
+    /* El toque maestro de cristal */
+    border: 1px solid var(--border-soft) !important;
+    border-radius: 20px;
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+#zen5 .card:hover {
+    background: rgba(237, 28, 36, 0.05) !important;
+    border-color: var(--amd-red) !important;
+    transform: scale(1.05) translateY(-5px);
+    box-shadow: 0 15px 40px var(--amd-red-glow);
+}
+
+/* El título Nirvana con el nuevo naranja de Ryzen */
+#zen5 h2 span {
+    background: linear-gradient(90deg, var(--amd-red), var(--ryzen-orange));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 800;
+}
+
+/* Animación de flotación suave */
+@keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-15px); }
+    100% { transform: translateY(0px); }
+}
+
+/* Definimos la animación de respiración sutil */
+@keyframes breathe-red {
+    0% { 
+        filter: drop-shadow(0 0 2px var(--amd-red));
+        opacity: 0.7;
+        transform: scale(0.95);
+    }
+    50% { 
+        filter: drop-shadow(0 0 12px var(--amd-red));
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    100% { 
+        filter: drop-shadow(0 0 2px var(--amd-red));
+        opacity: 0.7;
+        transform: scale(0.95);
+    }
+}
+/* Aplicamos la animación al icono blanco */
+.breathe-icon {
+    display: inline-block;
+    animation: breathe-red 3s ease-in-out infinite; /* Tiempo de 3s para que sea una respiración lenta */
+}
+/* Ajuste al contenedor del icono para que no corte el brillo externo */
+.icon-box {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: #000; /* Fondo negro sólido para el contraste */
+    overflow: visible !important; /* Intentamos que el brillo respire */
+}
+.img-tech-float {
+    animation: float 6s ease-in-out infinite; /* La imagen sube y baja sola */
+    filter: drop-shadow(0 5px 15px var(--amd-red-glow));
+}
+
+.vcache-card {
+    background: var(--bg-glass);
+    /* Cut esquina superior izquierda para un look industrial */
+    clip-path: polygon(15px 0%, 100% 0%, 100% 100%, 0% 100%, 0% 15px);
+    border: 1px solid var(--border-soft);
+    position: relative;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    border-left: none; /* Elimina el borde genérico */
+}
+
+/* trazo láser que no llega a los extremos */
+.vcache-card::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 20%; /* Empieza después del corte */
+    height: 60%; /* No ocupa todo el alto */
+    width: 3px;
+    background: linear-gradient(to bottom, transparent, var(--amd-red), transparent);
+    box-shadow: 0 0 15px var(--amd-red-glow);
+    transition: all 0.4s ease;
+}
+/* Efecto hover diferencial */
+.vcache-card:hover {
+    background: rgba(237, 28, 36, 0.08);
+    transform: translateX(8px) scale(1.02);
+    border-color: rgba(237, 28, 36, 0.3);
+}
+
+.icon-box {
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: var(--amd-red);
+    animation: pulse-red 2s infinite; /* El icono brilla */
+}
+
+/* Contenedor con rejilla técnica de fondo */
+#diseno {
+    background-image: 
+        radial-gradient(circle at 2px 2px, rgba(255,255,255,0.05) 1px, transparent 0);
+    background-size: 30px 30px; 
+}
+
+/* Tarjeta Estilo Módulo de Hardware */
+.chiplet-card {
+    background: var(--bg-glass) !important;
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--border-soft) !important;
+    border-radius: 4px; /* Esquinas técnicas, no redondeadas */
+    position: relative;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.chiplet-card:hover {
+    border-color: rgba(255,255,255,0.3) !important;
+    transform: translateY(-5px);
+}
+
+/* El acento de color superior controlado por Vue[Vue tema  2, 4] */
+.accent-line {
+    height: 4px;
+    width: 60px;
+    margin-bottom: 20px;
+    border-radius: 2px;
+}
+
+/* Banner de Optimización Estilo Barra de Estado[Vue tema 4] */
+.opt-banner {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-soft);
+    border-left: 4px solid var(--amd-red);
+    box-shadow: var(--accent-shadow);
+}
+
+/* Efecto de pulso de radar para el gráfico circular */
+.radar-container {
+    position: relative;
+    padding: 10px;
+}
+
+.radar-container::after {
+    content: "";
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 50%;
+    border: 2px solid var(--amd-red);
+    animation: radar-pulse 2s infinite;
+    pointer-events: none;
+}
+
+@keyframes radar-pulse {
+    0% { transform: scale(1); opacity: 0.5; }
+    100% { transform: scale(1.2); opacity: 0; }
+}
+
+/* Tarjetas de telemetría estilo HUD */
+.telemetry-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid var(--border-soft);
+    border-top: 2px solid var(--amd-red);
+    transition: all 0.3s ease;
+}
+
+.telemetry-card:hover {
+    background: rgba(237, 28, 36, 0.05);
+    box-shadow: 0 0 20px var(--amd-red-glow);
+}
+
+.glitch-text {
+    text-shadow: 2px 0 var(--amd-red-glow), -2px 0 rgba(0, 255, 255, 0.2);
+}
+
+/* Botones de Filtro estilo HUD */
+.btn-filter {
+    background: transparent;
+    color: var(--text-dim);
+    border: 1px solid var(--border-soft);
+    padding: 8px 20px;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    letter-spacing: 1px;
+}
+
+.btn-filter.active, .btn-filter:hover {
+    background: var(--amd-red);
+    color: white;
+    border-color: var(--amd-red);
+    box-shadow: 0 0 15px var(--amd-red-glow);
+}
+
+/* Efecto Overlay en la Galería */
+.gallery-card {
+    position: relative;
+    border-radius: 0; /* Look industrial recto */
+    border: 1px solid var(--border-soft) !important;
+}
+
+.gallery-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+    padding: 20px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gallery-card:hover .gallery-overlay {
+    opacity: 1;
+}
+
+.gallery-img {
+    transition: transform 0.5s ease;
+}
+
+.gallery-card:hover .gallery-img {
+    transform: scale(1.1); /* Zoom suave al pasar el mouse */
+}
